@@ -53,6 +53,7 @@ $(document).ready(function() {
   };
 
   $("#form").submit(saveData);
+
   $("ul").delegate("button", "click", function() {
     const id = $(this).data("value");
 

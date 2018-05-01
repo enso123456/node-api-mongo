@@ -1,5 +1,4 @@
 const _ = require("lodash");
-const router = require("express").Router();
 
 let tigers = [
   { id: 1, name: "Tom", age: 14, gender: "male" },

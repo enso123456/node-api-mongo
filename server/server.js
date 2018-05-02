@@ -1,28 +1,12 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const path = require("path");
 const app = express();
+const api = require("./api/api");
 
-const lionsRouter = require("./lion");
-const tigerRouter = require("./tiger");
+require("./middleware/appMiddleware")(app);
 
-app.use(morgan());
-app.use(express.static("client"));
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
+app.use("/api", api);
 
-app.set("views", path.join(__dirname, "client"));
-app.set("view engine", "ejs");
-
-app.get("/", function(req, res, next) {
-  res.render("index");
-});
-app.use("/lions", lionsRouter);
-app.use("/tigers", tigerRouter);
-
-app.use(function(err, req, res, next) {
-  console.log(err);
-});
+//global error handler
+app.use(require("./middleware/error")());
 
 module.exports = app;

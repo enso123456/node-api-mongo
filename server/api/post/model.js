@@ -1,6 +1,5 @@
-import { mongo } from "mongoose";
-
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -12,11 +11,11 @@ const PostSchema = new mongoose.Schema({
     required: true
   },
   author: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "user",
     required: true
   },
-  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "category" }]
+  categories: [{ type: Schema.Types.ObjectId, ref: "category" }]
 });
 
 module.exports = mongoose.model("post", PostSchema);

@@ -1,9 +1,18 @@
 const router = require("express").Router();
 const logger = require("../../util/logger");
+const controller = require("./controller");
 
-router.route("/").get(function(req, res, next) {
-  logger.log("Accessing category route");
-  res.send("Category Route");
-});
+router.param("id", controller.param);
+
+router
+  .route("/")
+  .get(controller.get)
+  .post(controller.save);
+
+router
+  .route("/:id")
+  .get(controller.getOne)
+  .put(controller.update)
+  .delete(controller.delete);
 
 module.exports = router;

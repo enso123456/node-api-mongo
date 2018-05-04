@@ -4,7 +4,8 @@ var config = {
   dev: "development",
   test: "testing",
   prod: "production",
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 3000,
+  secret: "this is a secret"
 };
 
 //check if env is defined

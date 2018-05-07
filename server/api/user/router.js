@@ -16,9 +16,12 @@ router
   .get(controller.get)
   .post(authentication.signup);
 
-router.post("/signin", requireSignin, authentication.signin);
-router.route("/:id").get(controller.getOne);
-router.post("/:id", requireSignin, controller.update);
-router.delete("/:id", requireSignin, controller.delete);
+router.route("/signin").post(requireSignin, authentication.signin);
+
+router
+  .route("/:id")
+  .get(controller.getOne)
+  .post(requireSignin, controller.update)
+  .delete(requireSignin, controller.delete);
 
 module.exports = router;
